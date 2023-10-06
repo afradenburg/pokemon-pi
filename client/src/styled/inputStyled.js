@@ -19,7 +19,7 @@ export const InputStyled = styled.input`
   outline: none;
   font-size: 16px;
   color: #ffffff;
-  background-color: #000000;
+  background-color: green;
   box-shadow: 0 0 10px #00ff00;
   animation: ${neonAnimation} 2s linear infinite;
   transition: box-shadow 0.3s ease;

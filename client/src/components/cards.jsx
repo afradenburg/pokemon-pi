@@ -3,13 +3,20 @@ import Card from './card';
 import { CardContainer } from '../styled/cardContainer.Styled';
 
 const Cards = ({ allPokemons }) => {
-  const pokemonList = allPokemons;
+  let pokemonList = [];
+
+  if (Array.isArray(allPokemons)) {
+    pokemonList = allPokemons;
+  } else if (typeof allPokemons === 'object') {
+    pokemonList = [allPokemons];
+  }
 
   return (
     <CardContainer>
-      {pokemonList?.map(( pokemon ) => (
+      {pokemonList.map((pokemon) => (
         <Card 
-        pokemon={pokemon}
+          key={pokemon.id}
+          pokemon={pokemon}
         />
       ))}
     </CardContainer>

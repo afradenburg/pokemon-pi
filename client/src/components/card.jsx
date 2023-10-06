@@ -4,11 +4,14 @@ import { CardStyle } from '../styled/cardStyled';
 const Card = ({ pokemon }) => {
   return (
     <CardStyle>
-      <h2>name: {pokemon.name}</h2>
-      <h2>hp: {pokemon.hp}</h2>
-      <h2>attack: {pokemon.attack}</h2>
-      <h2>defense: {pokemon.defense}</h2>
-      <h2>id: {pokemon.id}</h2>
+      <h1>{pokemon.name}</h1>
+      <h2>{pokemon.attack}</h2>
+      <h2>types:</h2>
+      {
+        pokemon.type.map((type)=> 
+        <h2>{type}</h2>
+        )
+      }
       <img src={pokemon.image} alt={pokemon.name} />
     </CardStyle>
   );

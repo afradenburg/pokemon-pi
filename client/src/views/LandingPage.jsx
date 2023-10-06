@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const LandingPage = () => {
   return (
     <div>
-      <h1>Bienvenido(a) a nuestra aplicación</h1>
+      <h1>Bienvenido a la poke-aplicacion</h1>
       <Link to="/home">
         <button>Ingresar</button>
       </Link>

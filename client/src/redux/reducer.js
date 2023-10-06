@@ -1,6 +1,6 @@
-import {  REMOVE_FAV, FILTER, ORDER, RESET, GET_POKEMONS } from "./actionsTypes";
+import {   FILTER, ORDER, RESET, GET_POKEMONS, GET_POKEMON_BY_NAME, ORDERBYATTACK } from "./actionsTypes";
 
-let initialState = { Pokemons: [], copyPokemons: [] };
+let initialState = { Pokemons: [], CopyPokemons: [] };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,12 +10,31 @@ const rootReducer = (state = initialState, action) => {
         copyPokemons: action.payload 
       };
 
-    case REMOVE_FAV:
+    case GET_POKEMON_BY_NAME:
       return {
         ...state,
-        myFavorites: action.payload,
-        allCharactersFav: action.payload
+        Pokemons: action.payload
       };
+
+      case ORDER:
+  const CopyPokemonsAll = [...state.Pokemons];
+  return {
+    ...state,
+    Pokemons:
+      action.payload === "A"
+        ? CopyPokemonsAll.sort((a, b) => a.name.localeCompare(b.name))
+        : CopyPokemonsAll.sort((a, b) => b.name.localeCompare(a.name)),
+  };
+
+  case ORDERBYATTACK:
+  const CopyPokemonsAttack = [...state.Pokemons];
+  return {
+    ...state,
+    Pokemons:
+      action.payload === "A"
+        ? CopyPokemonsAttack.sort((a, b) => b.attack - a.attack)
+        : CopyPokemonsAttack.sort((a, b) => a.attack - b.attack),
+  };
 
     case FILTER:
       const allCharactersFiltered = state.allCharactersFav.filter(
@@ -24,15 +43,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         myFavorites: allCharactersFiltered,
-      };
-    case ORDER:
-      const allCharactersFavCopy = [...state.allCharactersFav];
-      return {
-        ...state,
-        myFavorites:
-          action.payload === "A"
-            ? allCharactersFavCopy.sort((a, b) => a.id - b.id)
-            : allCharactersFavCopy.sort((a, b) => b.id - a.id),
       };
     case RESET:
       return {

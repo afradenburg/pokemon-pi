@@ -1,5 +1,6 @@
 export const GET_POKEMONS = "GET_POKEMONS"
-export const REMOVE_FAV = "REMOVE_FAV"
-export const FILTER = "FILTER"
+export const GET_POKEMON_BY_NAME = "GET_POKEMON_BY_NAME"
 export const ORDER = "ORDER"
+export const ORDERBYATTACK = "ORDERBYATTACK"
+export const FILTER = "FILTER"
 export const RESET = "RESET"  

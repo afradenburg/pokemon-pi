@@ -1,4 +1,4 @@
-import { RESET, REMOVE_FAV, FILTER, ORDER, GET_POKEMONS } from "./actionsTypes";
+import { RESET, REMOVE_FAV, FILTER, ORDER, GET_POKEMONS, GET_POKEMON_BY_NAME, ORDERBYATTACK } from "./actionsTypes";
 import axios from "axios";
 
 export const getPokemons = () => {
@@ -17,18 +17,17 @@ export const getPokemons = () => {
   };
 };
 
-export const removeFav = (id) => {
-  const endpoint = "http://localhost:3001/rickandmorty/fav/" + id;
+export const getPokemonsByName = (nameLower) => {
+  const endpoint = `http://localhost:3001/pokemon?name=${nameLower}`
   return async (dispatch) => {
     try {
-      const {data} = await axios.delete(endpoint)
-      if(data.id > 800 ) throw Error(" No hay favoritos con ese id")
+      const {data} = await axios.get(endpoint)
       return dispatch({
-        type: REMOVE_FAV,
+        type: GET_POKEMON_BY_NAME,
         payload: data,
       });
     } catch (error) {
-      console.log("Error al eliminar un favorito", error )
+      console.log("no hay pokemons con ese nombre", error )
     } 
     }
   };
@@ -46,6 +45,14 @@ export const orderCards = (order) => {
     payload: order,
   };
 };
+
+export const orderByAttack = (orderAttack) => {
+  return {
+    type: ORDERBYATTACK,
+    payload: orderAttack,
+  }
+};
+
 export function reset() {
   return {
     type: RESET,

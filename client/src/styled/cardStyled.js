@@ -35,7 +35,7 @@ export const CardStyle = styled.div`
   border-radius: 5px;
   padding: 10px;
   margin: 1%;
-  border: 2px solid blueviolet;
+  border: 2px solid red;
   border-radius: 15px;
   font-size: 10px;
   font-family: 'Courier New', Courier, monospace, sans-serif;
