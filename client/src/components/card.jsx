@@ -1,18 +1,24 @@
 import React from 'react';
 import { CardStyle } from '../styled/cardStyled';
+import { Link } from 'react-router-dom'
+
 
 const Card = ({ pokemon }) => {
+  const {name,  type, id, image} = pokemon
+
+  
   return (
     <CardStyle>
-      <h1>{pokemon.name}</h1>
-      <h2>{pokemon.attack}</h2>
+      <h1>{name}</h1>
       <h2>types:</h2>
       {
-        pokemon.type.map((type)=> 
+        type.map((type)=> 
         <h2>{type}</h2>
         )
       }
-      <img src={pokemon.image} alt={pokemon.name} />
+      <Link to={`/home/${id}`}>
+      <img src={image} alt={id} />
+      </Link>
     </CardStyle>
   );
 };
