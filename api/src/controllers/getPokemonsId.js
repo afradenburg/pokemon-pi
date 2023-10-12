@@ -1,6 +1,5 @@
 const axios = require("axios");
 const { Pokemon } = require("../db");
-
 async function getPokemonByIdFromAPI(id) {
   const URL = "https://pokeapi.co/api/v2/pokemon/";
   try {
@@ -19,7 +18,6 @@ async function getPokemonByIdFromAPI(id) {
     throw new Error(error.message);
   }
 }
-
 async function getPokemonByIdFromDB(id) {
   try {
     const dbPokemon = await Pokemon.findOne({
@@ -30,5 +28,4 @@ async function getPokemonByIdFromDB(id) {
     throw new Error(error.message);
   }
 }
-
 module.exports = { getPokemonByIdFromAPI, getPokemonByIdFromDB };
