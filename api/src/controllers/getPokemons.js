@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Pokemon } = require("../db");
+const { Pokemon, TypePokemon } = require("../db");
 
 async function getPokemons() {
   const URL = "https://pokeapi.co/api/v2/pokemon?limit=50";
@@ -20,6 +20,7 @@ async function getPokemons() {
     }));
 
     const dbPokemons = await getPokemonFromDB();
+    console.log(dbPokemons)
     const pokemonListDb = dbPokemons.map((dbPokemon) => ({
       name: dbPokemon.name,
       id: dbPokemon.id,
@@ -27,6 +28,7 @@ async function getPokemons() {
       hp: dbPokemon.hp,
       attack: dbPokemon.attack,
       defense: dbPokemon.defense,
+      
     }));
 
     const pokemonList = [...pokemonListDb, ...pokemonListApi];
