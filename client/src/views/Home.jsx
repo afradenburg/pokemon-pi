@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons } from '../redux/actions';
 import { Pagination } from '../components/pagination';
+import { Container } from '../styled/containerStyled';
 
 
 const Home = () => {
@@ -28,12 +29,13 @@ const Home = () => {
  
 
   return (
-    <div>
-      Home
+    <Container>
       <Navbar />
-      <Pagination page={pageHandler} totalPages={totalPages} />
       <Cards allPokemons={currentElements} />
+    <div>
+      <Pagination page={pageHandler} totalPages={totalPages} />
     </div>
+    </Container>
   );
 }
 

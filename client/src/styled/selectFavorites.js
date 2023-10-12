@@ -12,7 +12,7 @@ background-color: white;
 color: black;
 outline: none;
 cursor: pointer;
-width: 200px; /* Ancho fijo */
+width: 100px; /* Ancho fijo */
 
 
 &:hover {
@@ -36,4 +36,5 @@ export const FilterStyle = styled.div`
   text-align: center;
   align-items: center;
   justify-content: center;
+  width: 90%;
 `;

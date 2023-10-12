@@ -4,6 +4,10 @@ import { useState } from 'react';
 import { getPokemonsByName, filterByType, orderByAttack, orderByCreate, orderCards, reset } from '../redux/actions';
 import { useDispatch, useSelector } from "react-redux";
 import { FilterStyle, OptionStyled, SelectStyled } from '../styled/selectFavorites';
+import { Link } from 'react-router-dom';
+import { SearchStyled } from '../styled/searchStyled';
+import { HeaderApp } from '../styled/headerStyle';
+import { Button } from '../styled/cardStyled';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -44,25 +48,33 @@ const Navbar = () => {
 
 
   return (
-    <div>
-      <form>
+    
+    <SearchStyled>
+     
+      <HeaderApp>
         <InputStyled 
           placeholder='nombre del pokemon'
           type='search'
           onChange={(event) => handleChange(event)}
-        />
-        <button
+          />
+        <Button
           type='submit'
           onClick={handleSubmit}
-        >
+          >
           Buscar
-        </button>
-        <button
+        </Button>
+        </HeaderApp>
+        <Button
           onClick={resetHandler}
-        >
+          >
           todos los pokemons
-        </button>
-      </form>
+        </Button>
+      <Link to={"/formPage"}>
+        <Button>
+          Crear Pokemon
+        </Button>
+      </Link>
+   
       
     <FilterStyle className='order abc'>
       <h2>Orden alfabetico</h2>
@@ -83,8 +95,8 @@ const Navbar = () => {
     <FilterStyle className='order create'>
       <h2>Filtar por creacion</h2>
       <SelectStyled onChange={handleOrderByCreate}>
-       <OptionStyled value="C">Primero Creados</OptionStyled>
-       <OptionStyled value="D">Primero no Creados</OptionStyled>
+       <OptionStyled value="D">No Creados</OptionStyled>
+       <OptionStyled value="C">Creados</OptionStyled>
       </SelectStyled>
     </FilterStyle>
 
@@ -99,7 +111,7 @@ const Navbar = () => {
       </SelectStyled>
     </FilterStyle>
 
-    </div>
+    </SearchStyled>
   );
 }
 

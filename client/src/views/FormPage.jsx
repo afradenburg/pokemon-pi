@@ -1,9 +1,115 @@
-import React from 'react'
+import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { postPokemon } from "../redux/actions";
+import { validation } from "../helpers/validate";
+import { Link } from 'react-router-dom';
+import { FormLogin } from "../styled/formStyled";
 
-const FormPage = () => {
+const PokemonForm = () => {
+  const dispatch = useDispatch();
+  const [create, setCreate] = useState({
+    name: "",
+    attack: "",
+    defense: "",
+    hp: "",
+    image: "",
+  });
+
+  const [errors, setErrors] = useState({
+    name: "campo requerido",
+    attack: "campo requerido",
+    defense: "campo requerido",
+    hp: "campo requerido",
+    image: "campo requerido" 
+  });
+
+  const [type, setType] = useState("");
+
+  const handleChange = (event) => {
+    setCreate({
+      ...create,
+      [event.target.name]: event.target.value
+    });
+    setErrors(
+      validation({
+        ...create,
+        [event.target.name]: event.target.value
+      })
+    )
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(postPokemon(create));
+    setCreate({
+      name: "",
+      attack: "",
+      defense: "",
+      hp: "",
+      image: "",
+    });
+    alert("Pokemon creado da click en volver")
+  };
+
+  function disableHandler() {
+    for (let error in errors) {
+      if (errors[error] !== "") {
+        return true;
+      }
+    }
+    for (let input in create) {
+      if (create[input] === "") {
+        return true;
+      }
+    }
+    return false;
+  }
+
+ 
   return (
-    <div>FormPage</div>
-  )
-}
+    <FormLogin onSubmit={handleSubmit}>
+      <label>
+        Name:
+        <input type="text" name="name" value={create.name} onChange={handleChange} />
+      </label>
+        {errors.name && <span>{errors.name}</span>}
+      <label>
+        Attack:
+        <input type="number" name="attack" value={create.attack} onChange={handleChange} />
+      </label>
+        {errors.attack && <span>{errors.attack}</span>}
+      <label>
+        Defense:
+        <input type="number" name="defense" value={create.defense} onChange={handleChange} />
+      </label>
+        {errors.defense && <span>{errors.defense}</span>}
+      <label>
+        HP:
+        <input type="number" name="hp" value={create.hp} onChange={handleChange} />
+      </label>
+        {errors.hp && <span>{errors.hp}</span>}
+      <label>
+        Image:
+        <input type="text" name="image" value={create.image} onChange={handleChange} />
+      </label>
+        {errors.image && <span>{errors.image}</span>}
+      <label>
+        Type:
+        <input type="text" name="type" value={type} onChange={(e) => setType(e.target.value)} />
+      </label>
+      <button type="submit" disabled={disableHandler()} >
+        Crear Pokemon
+      </button>
+      <div>
+        <Link to={"/home"}>
+          <button>
+            volver
+          </button>
+        </Link>
+      </div>
+    </FormLogin>
+  );
+};
 
-export default FormPage;
+export default PokemonForm;

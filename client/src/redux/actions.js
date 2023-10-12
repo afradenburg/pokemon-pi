@@ -1,4 +1,4 @@
-import { RESET, ORDER, GET_POKEMONS, GET_POKEMON_BY_NAME, ORDER_BY_ATTACK, GET_POKEMON_DETAIL, ORDER_BY_CREATE, GET_TYPES, FILTER_BY_TYPE } from "./actionsTypes";
+import { RESET, ORDER, POST_POKEMON, GET_POKEMONS, GET_POKEMON_BY_NAME, ORDER_BY_ATTACK, GET_POKEMON_DETAIL, ORDER_BY_CREATE, GET_TYPES, FILTER_BY_TYPE } from "./actionsTypes";
 import axios from "axios";
 
 export const getPokemons = () => {
@@ -43,7 +43,7 @@ export const getPokemonsByName = (nameLower) => {
         payload: data,
       });
     } catch (error) {
-      console.log('asi no se llama ningun pokemon' )
+      alert('asi no se llama ningun pokemon' )
     } 
     }
   };
@@ -58,7 +58,7 @@ export const getPokemonsByDetail = (id) => {
         payload: data,
       })
     } catch (error) {
-      console.log('error al mostrar detalles' )
+      alert('error al mostrar detalles' )
     }
   }
 }
@@ -89,6 +89,23 @@ export const filterByType = (type) => {
   return {
     type: FILTER_BY_TYPE,
     payload: type
+  }
+}
+
+export const postPokemon = (props) => {
+  const endpoint = "http://localhost:3001/pokemons";
+  const { name, attack, defense, hp, image, type } = props;
+  
+  return async (dispatch) => {
+    try {
+      await axios.post(endpoint, { name, attack, defense, hp, image, type });
+      return dispatch({
+        type: POST_POKEMON,
+        payload: { name, attack, defense, hp, image, type }
+      });
+    } catch (error) {
+      alert("Error al crear pokemon", error);
+    }
   }
 }
 

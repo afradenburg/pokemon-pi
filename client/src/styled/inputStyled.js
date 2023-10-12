@@ -2,10 +2,10 @@ import styled, { keyframes } from 'styled-components';
 
 const neonAnimation = keyframes`
   0% {
-    box-shadow: 0 0 10px #00ff00;
+    box-shadow: 0 0 10px yellow;
   }
   50% {
-    box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
+    box-shadow: 0 0 20px blue, 0 0 30px #00ff00;
   }
   100% {
     box-shadow: 0 0 10px #00ff00;
@@ -15,11 +15,10 @@ const neonAnimation = keyframes`
 export const InputStyled = styled.input`
   padding: 10px;
   border-radius: 5px;
-  border: none;
-  outline: none;
+
   font-size: 16px;
-  color: #ffffff;
-  background-color: green;
+  color: black;
+  background-color: white;
   box-shadow: 0 0 10px #00ff00;
   animation: ${neonAnimation} 2s linear infinite;
   transition: box-shadow 0.3s ease;

@@ -3,7 +3,9 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemonsByDetail } from '../redux/actions';
 import { useEffect } from 'react';
-import { CardStyle } from '../styled/cardStyled';
+import { CardStyle, Content, ID, Image, Subtitle, Title } from '../styled/cardStyled';
+import { Link } from 'react-router-dom';
+import { Button } from '../styled/button';
 
 const DetailPokemon = () => {
   const { id } = useParams();
@@ -17,20 +19,28 @@ const DetailPokemon = () => {
   console.log("Prop recibido:", pokemon);
 
   return (
+    
+      <Content>
     <CardStyle>
-      <h1>{name}</h1>
-      <h2>id: {id}</h2>
-      <h2>attack: {attack}</h2>
-      <h2>defense: {defense}</h2>
-      <h2>hp: {hp}</h2>
-      <h2>types:</h2>
+       <Link to={"/home"}>
+        <Button >
+          volver
+        </Button>
+      </Link>
+      <Title>{name}</Title>
+      <Subtitle>attack: {attack}</Subtitle>
+      <Subtitle>defense: {defense}</Subtitle>
+      <Subtitle>hp: {hp}</Subtitle>
+      <Subtitle>types:</Subtitle>
       {Array.isArray(type) ? (
         type.map((type) => <h2 key={type}> {type}</h2>)
-      ) : (
-        <h2>{type}</h2>
-      )}
-      <img src={image} alt={pokemon.id} />
+        ) : (
+          <Subtitle>{type}</Subtitle>
+          )}
+     <Image src={image} alt={pokemon.name} />
+      <ID>id: {id}</ID>
     </CardStyle>
+    </Content>
   );
 };
 

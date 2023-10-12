@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import imageLogo from "../assets/rick.jpg"
+import imageLogo from "../assets/pokebola.png"
 
 export const FormLogin = styled.form`
   background-image: url(${imageLogo});
@@ -19,4 +19,6 @@ export const FormLogin = styled.form`
   border: 1px solid white;
   border-radius: 15px;
   box-shadow: 7px 5px 5px blueviolet;
+  width: 500%;
+  
 `;

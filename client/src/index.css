@@ -5,12 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
-  background: rgb(197, 197, 197);
-  /* background-image: url("./assets/background.png"); */
+  display: flex;
+  height: 80vh;
+  background-image: url("./assets/ladinPage.jpg");
   background-position: center;
   background-size: cover;
   width: 100%;
+  justify-content: center;
 }
 
 code {

@@ -1,4 +1,4 @@
-import {    ORDER, RESET, GET_POKEMONS, GET_POKEMON_BY_NAME, ORDER_BY_ATTACK, GET_POKEMON_DETAIL, ORDER_BY_CREATE, GET_TYPES, FILTER_BY_TYPE } from "./actionsTypes";
+import {   POST_POKEMON, ORDER, RESET, GET_POKEMONS, GET_POKEMON_BY_NAME, ORDER_BY_ATTACK, GET_POKEMON_DETAIL, ORDER_BY_CREATE, GET_TYPES, FILTER_BY_TYPE } from "./actionsTypes";
 
 let initialState = { Pokemons: [], CopyPokemons: [], Types: [] };
 
@@ -58,7 +58,6 @@ const rootReducer = (state = initialState, action) => {
 
   case FILTER_BY_TYPE: 
     const copyPokemonsType = [...state.CopyPokemons];
-    console.log(copyPokemonsType)
     const filteredPokemonType = copyPokemonsType.filter((pokemon) => {
     return pokemon.type.includes(action.payload);
   });
@@ -66,6 +65,12 @@ const rootReducer = (state = initialState, action) => {
     ...state,
     Pokemons: filteredPokemonType,
   };
+
+    case POST_POKEMON:
+      return {
+        ...state,
+        Pokemons: [...state.Pokemons, action.payload],
+      }
 
     case RESET:
       return {

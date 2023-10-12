@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import imageCard from '../assets/cardPortal.jpg';
+import fondo  from '../assets/R.png'
 
 const slideIn = keyframes`
   from {
@@ -21,41 +21,50 @@ const fadeIn = keyframes`
   }
 `;
 
-export const CardStyle = styled.div`
-  color: white;
+
+export const Content = styled.div`
   display: flex;
-  flex-direction: column;
-  text-align: center;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between; /* Ajustando el espacio entre los elementos */
-  opacity: 50%;
-  background-color: rgba(0, 0, 10, 0.3);
-  flex-wrap: nowrap;
-  text-shadow: 3px 2px 2px black;
-  border-radius: 5px;
+  height: 100vh;
   padding: 10px;
-  margin: 1%;
-  border: 2px solid red;
-  border-radius: 15px;
-  font-size: 10px;
-  font-family: 'Courier New', Courier, monospace, sans-serif;
-  width: 200px;
-  overflow: hidden;
-  height: 350px;
+`;
+
+export const CardStyle = styled.div`
+  background-image: URL(${fondo});
+  background-position: center;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
   animation: ${slideIn} 1s ease-in-out forwards, ${fadeIn} 1s ease-in-out forwards;
 `;
 
-export const Image = styled.img`
-  display: block;
-  width: 100px; 
-  border-radius: 50%;
-  border: 2px solid blueviolet;
-  height: auto;
-  margin: 10px 0;
-  margin-left: auto;
-  margin-right: auto;
+export const Button = styled.button`
+  background-color: #f5f5f5;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
   cursor: pointer;
-  opacity: 0;
-  animation: ${slideIn} 1s ease-in-out forwards, ${fadeIn} 1s ease-in-out forwards;
-  overflow: hidden;
+`;
+
+export const Title = styled.h1`
+  font-size: 24px;
+  margin-top: 20px;
+`;
+
+export const Subtitle = styled.h2`
+  font-size: 18px;
+  margin-top: 10px;
+`;
+
+export const Image = styled.img`
+  width: 100px;
+  height: auto;
+  margin-top: 20px;
+`;
+
+export const ID = styled.h3`
+  font-size: 14px;
+  margin-top: 10px;
 `;
