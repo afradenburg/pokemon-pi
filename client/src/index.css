@@ -8,6 +8,7 @@ body {
   display: flex;
   height: 80vh;
   background-image: url("./assets/ladinPage.jpg");
+  background-color: rgb(62, 62, 62);
   background-position: center;
   background-size: cover;
   width: 100%;

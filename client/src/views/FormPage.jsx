@@ -1,30 +1,30 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postPokemon } from "../redux/actions";
 import { validation } from "../helpers/validate";
 import { Link } from 'react-router-dom';
 import { FormLogin } from "../styled/formStyled";
+import { SelectStyled, OptionStyled } from "../styled/selectFavorites";
 
 const PokemonForm = () => {
   const dispatch = useDispatch();
+  const types = useSelector((state) => state.Types);
   const [create, setCreate] = useState({
     name: "",
     attack: "",
     defense: "",
     hp: "",
     image: "",
+    type: [] // Inicializar como un array vacío para almacenar los tipos seleccionados
   });
-
   const [errors, setErrors] = useState({
     name: "campo requerido",
     attack: "campo requerido",
     defense: "campo requerido",
     hp: "campo requerido",
-    image: "campo requerido" 
+    image: "campo requerido",
   });
-
-  const [type, setType] = useState("");
 
   const handleChange = (event) => {
     setCreate({
@@ -36,11 +36,20 @@ const PokemonForm = () => {
         ...create,
         [event.target.name]: event.target.value
       })
-    )
+    );
+  };
+
+  const handleByType = (event) => {
+    const selectedTypes = Array.from(event.target.selectedOptions, (option) => option.value); // Obtener los valores seleccionados en un array
+    setCreate({
+      ...create,
+      type: selectedTypes
+    });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(create)
     dispatch(postPokemon(create));
     setCreate({
       name: "",
@@ -48,8 +57,9 @@ const PokemonForm = () => {
       defense: "",
       hp: "",
       image: "",
+      type: [] // Reiniciar el estado de los tipos seleccionados
     });
-    alert("Pokemon creado da click en volver")
+    alert("Pokemon creado, haz clic en volver");
   };
 
   function disableHandler() {
@@ -66,37 +76,42 @@ const PokemonForm = () => {
     return false;
   }
 
- 
   return (
     <FormLogin onSubmit={handleSubmit}>
       <label>
         Name:
         <input type="text" name="name" value={create.name} onChange={handleChange} />
       </label>
-        {errors.name && <span>{errors.name}</span>}
+      {errors.name && <span>{errors.name}</span>}
       <label>
         Attack:
         <input type="number" name="attack" value={create.attack} onChange={handleChange} />
       </label>
-        {errors.attack && <span>{errors.attack}</span>}
+      {errors.attack && <span>{errors.attack}</span>}
       <label>
         Defense:
         <input type="number" name="defense" value={create.defense} onChange={handleChange} />
       </label>
-        {errors.defense && <span>{errors.defense}</span>}
+      {errors.defense && <span>{errors.defense}</span>}
       <label>
         HP:
         <input type="number" name="hp" value={create.hp} onChange={handleChange} />
       </label>
-        {errors.hp && <span>{errors.hp}</span>}
+      {errors.hp && <span>{errors.hp}</span>}
       <label>
         Image:
         <input type="text" name="image" value={create.image} onChange={handleChange} />
       </label>
-        {errors.image && <span>{errors.image}</span>}
+      {errors.image && <span>{errors.image}</span>}
       <label>
         Type:
-        <input type="text" name="type" value={type} onChange={(e) => setType(e.target.value)} />
+        <SelectStyled onChange={handleByType} type="text" name="type" value={create.type} multiple>
+          {types.map((type) => (
+            <OptionStyled key={type.name} value={type.name}>
+              {type.name}
+            </OptionStyled>
+          ))}
+        </SelectStyled>
       </label>
       <button type="submit" disabled={disableHandler()} >
         Crear Pokemon

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const SearchStyled = styled.div`
-  background-color: red;
+  background-color: rgb(62, 62, 62);
+  color: white;
   display: flex;
   flex-direction: row;
   text-align: center;

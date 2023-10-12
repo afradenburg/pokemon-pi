@@ -16,8 +16,6 @@ const DetailPokemon = () => {
     dispatch(getPokemonsByDetail(id));
   }, [dispatch, id]);
 
-  console.log("Prop recibido:", pokemon);
-
   return (
     
       <Content>
