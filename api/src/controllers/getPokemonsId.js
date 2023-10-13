@@ -9,8 +9,10 @@ async function getPokemonByIdFromAPI(id) {
       id: pokemon.id,
       image: pokemon.sprites.front_default,
       hp: pokemon.stats.find((props) => props.stat.name === "hp").base_stat,
-      attack: pokemon.stats.find((props) => props.stat.name === "attack").base_stat,
-      defense: pokemon.stats.find((props) => props.stat.name === "defense").base_stat,
+      attack: pokemon.stats.find((props) => props.stat.name === "attack")
+        .base_stat,
+      defense: pokemon.stats.find((props) => props.stat.name === "defense")
+        .base_stat,
       type: pokemon.types.map((type) => type.type.name),
     };
     return pokemonDetail;

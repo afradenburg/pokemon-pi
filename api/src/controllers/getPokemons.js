@@ -14,22 +14,29 @@ async function getPokemons() {
       id: pokemon.id,
       image: pokemon.sprites.front_default,
       hp: pokemon.stats.find((stat) => stat.stat.name === "hp").base_stat,
-      attack: pokemon.stats.find((stat) => stat.stat.name === "attack").base_stat,
-      defense: pokemon.stats.find((stat) => stat.stat.name === "defense").base_stat,
+      attack: pokemon.stats.find((stat) => stat.stat.name === "attack")
+        .base_stat,
+      defense: pokemon.stats.find((stat) => stat.stat.name === "defense")
+        .base_stat,
+      speed: pokemon.stats.find((stat) => stat.stat.name === "speed").base_stat,
       type: pokemon.types.map((type) => type.type.name),
     }));
 
     const dbPokemons = await getPokemonFromDB();
-    console.log(dbPokemons)
-    const pokemonListDb = dbPokemons.map((dbPokemon) => ({
-      name: dbPokemon.name,
-      id: dbPokemon.id,
-      image: dbPokemon.image,
-      hp: dbPokemon.hp,
-      attack: dbPokemon.attack,
-      defense: dbPokemon.defense,
-      
-    }));
+    const pokemonListDb = dbPokemons.map((dbPokemon) => {
+      const type = dbPokemon.typePokemons.map((type) => {
+        return type.name;
+      });
+      return {
+        name: dbPokemon.name,
+        id: dbPokemon.id,
+        image: dbPokemon.image,
+        hp: dbPokemon.hp,
+        attack: dbPokemon.attack,
+        defense: dbPokemon.defense,
+        type: type,
+      };
+    });
 
     const pokemonList = [...pokemonListDb, ...pokemonListApi];
     return pokemonList;
@@ -40,7 +47,11 @@ async function getPokemons() {
 
 async function getPokemonFromDB() {
   try {
-    const dbPokemons = await Pokemon.findAll();
+    const dbPokemons = await Pokemon.findAll({
+      include: {
+        model: TypePokemon,
+      },
+    });
     return dbPokemons;
   } catch (error) {
     throw new Error(error.message);

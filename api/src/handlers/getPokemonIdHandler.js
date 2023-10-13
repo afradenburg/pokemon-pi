@@ -1,4 +1,7 @@
-const { getPokemonByIdFromAPI, getPokemonByIdFromDB } = require("../controllers/getPokemonsId");
+const {
+  getPokemonByIdFromAPI,
+  getPokemonByIdFromDB,
+} = require("../controllers/getPokemonsId");
 
 async function getPokemonsByIdHandler(req, res) {
   try {

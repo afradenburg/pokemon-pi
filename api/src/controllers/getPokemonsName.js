@@ -10,26 +10,26 @@ async function getPokemonsName(nameLower) {
       id: pokemons.id,
       image: pokemons.sprites.front_default,
       hp: pokemons.stats.find((props) => props.stat.name === "hp").base_stat,
-      attack: pokemons.stats.find((props) => props.stat.name === "attack").base_stat,
-      defense: pokemons.stats.find((props) => props.stat.name === "defense").base_stat,
+      attack: pokemons.stats.find((props) => props.stat.name === "attack")
+        .base_stat,
+      defense: pokemons.stats.find((props) => props.stat.name === "defense")
+        .base_stat,
       type: pokemons.types.map((type) => type.type.name),
     };
-    return pokemonDetail
-    } catch (error) {
-      throw new Error(error.message);
+    return pokemonDetail;
+  } catch (error) {
+    throw new Error(error.message);
   }
 }
 
-async function getPokemonByNameFromDB (nameLower){
+async function getPokemonByNameFromDB(nameLower) {
   try {
-    const dbPokemon = await  Pokemon.findOne({
-      where: {name : nameLower}
-    })
-    return dbPokemon
+    const dbPokemon = await Pokemon.findOne({
+      where: { name: nameLower },
+    });
+    return dbPokemon;
   } catch (error) {
     throw new Error(error.message);
   }
 }
 module.exports = { getPokemonsName, getPokemonByNameFromDB };
-
-

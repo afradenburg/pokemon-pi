@@ -1,4 +1,4 @@
-const getPokemons = require('../controllers/getPokemons');
+const getPokemons = require("../controllers/getPokemons");
 
 async function getPokemonsHandler(req, res) {
   try {
