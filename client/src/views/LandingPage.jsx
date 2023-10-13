@@ -1,20 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from "react-redux";
-import { getTypes } from '../redux/actions';
 
-const LandingPage = () => {
-  const dispatch = useDispatch()
-
-  const getTypesBd = () =>{
-    dispatch(getTypes())
-  }
-  
+const LandingPage = () => { 
   return (
     <div>
       <h1>Bienvenido a la poke-aplicacion</h1>
       <Link to="/home">
-        <button onClick={getTypesBd}> Ingresar</button>
+        <button> Ingresar</button>
       </Link>
     </div>
   );

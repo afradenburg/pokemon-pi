@@ -1,12 +1,12 @@
-import React from 'react';
-import { CardStyle } from '../styled/cardStyled';
-import { Link } from 'react-router-dom';
-import { Image } from '../styled/cardStyled';
+import React from "react";
+import { CardStyle } from "../styled/cardStyled";
+import { Link } from "react-router-dom";
+import { Image } from "../styled/cardStyled";
 
 const Card = ({ pokemon }) => {
-  console.log(pokemon)
+  console.log(pokemon);
   const { name, type, id, image } = pokemon;
-  const key = id
+  const key = id;
   return (
     <CardStyle>
       <h1>{name}</h1>

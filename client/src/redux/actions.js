@@ -17,7 +17,7 @@ export const getPokemons = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
-      console.log(data)
+      // console.log(data)
       if (!data.length) throw Error("No hay pokemons");
       return dispatch({
         type: GET_POKEMONS,

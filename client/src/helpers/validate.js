@@ -1,8 +1,13 @@
 export function validation(create) {
   let errors = {};
 
-
-  if (create.name.trim() === "" || create.name.split(" ").length > 1 || create.name.length > 10 || create.name.length < 3 || !isNaN(create.name)) {
+  if (
+    create.name.trim() === "" ||
+    create.name.split(" ").length > 1 ||
+    create.name.length > 10 ||
+    create.name.length < 3 ||
+    !isNaN(create.name)
+  ) {
     errors.name = "debe ser un solo nombre entre 3 y 10 caracteres";
   }
   const attack = parseInt(create.attack);
