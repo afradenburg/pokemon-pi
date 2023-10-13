@@ -22,7 +22,7 @@ const DetailPokemon = () => {
   useEffect(() => {
     dispatch(getPokemonsByDetail(id));
   }, [dispatch, id]);
-
+  console.log(pokemon)
   return (
     <Content>
       <CardStyle>

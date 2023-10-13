@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Title, Button } from '../styled/landinPageStyled';
+import { Container } from '../styled/containerStyled';
 
 const LandingPage = () => { 
   return (
-    <div>
-      <h1>Bienvenido a la poke-aplicacion</h1>
+    <Container>
+      <Title>Bienvenido a la poke-aplicacion</Title>
       <Link to="/home">
-        <button> Ingresar</button>
+        <Button> Ingresar</Button>
       </Link>
-    </div>
+    </Container>
   );
 }
 

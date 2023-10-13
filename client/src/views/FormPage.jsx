@@ -40,14 +40,13 @@ const PokemonForm = () => {
   };
 
   const handleByType = (event) => {
-    const selectedTypes = Array.from(
-      event.target.selectedOptions,
-      (option) => option.value
-    );
-    setCreate({
-      ...create,
-      [event.target.name]: selectedTypes,
-    });
+  
+      if(!create.type.includes(event.target.value)){
+        setCreate({
+          ...create,
+          type: [...create.type, event.target.value],
+        });
+      }
   };
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -134,8 +133,8 @@ const PokemonForm = () => {
           onChange={handleByType}
           type="text"
           name="type"
-          value={create.type}
           multiple
+          value={create.type}
         >
           {types.map((type) => (
             <OptionStyled key={type.name} value={type.name}>
